@@ -52,16 +52,102 @@
     };
 
     macros {
-        browsertab: browsertab {
+        full_screen: full_screen {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LCTRL &kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp ENTER>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL &kp LEFT_ALT>;
+
+            label = "FULL_SCREEN";
+        };
+
+        left_half: left_half {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LCTRL &kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp LEFT>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL &kp LEFT_ALT>;
+
+            label = "LEFT_HALF";
+        };
+
+        right_half: right_half {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LCTRL &kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp RIGHT>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL &kp LEFT_ALT>;
+
+            label = "RIGHT_HALF";
+        };
+
+        move_left: move_left {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LCTRL &kp LEFT_ALT &kp LEFT_GUI>,
+                <&macro_tap>,
+                <&kp LEFT>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL &kp LEFT_ALT &kp LGUI>;
+
+            label = "MOVE_LEFT";
+        };
+
+        move_right: move_right {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LCTRL &kp LEFT_ALT &kp LEFT_GUI>,
+                <&macro_tap>,
+                <&kp RIGHT>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL &kp LEFT_ALT &kp LGUI>;
+
+            label = "MOVE_RIGHT";
+        };
+
+        workspace_left: workspace_left {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
                 <&macro_press>,
                 <&kp LCTRL>,
                 <&macro_tap>,
-                <&kp TAB>,
+                <&kp LEFT>,
                 <&macro_release>,
                 <&kp LCTRL>;
+
+            label = "WORKSPACE_LEFT";
+        };
+
+        workspace_right: workspace_right {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LCTRL>,
+                <&macro_tap>,
+                <&kp RIGHT>,
+                <&macro_release>,
+                <&kp LCTRL>;
+
+            label = "WORKSPACE_RIGHT";
         };
     };
 
@@ -228,10 +314,10 @@
         ADJ {
             display-name = "System";
             bindings = <
-&trans  &kp F1        &kp F2        &kp F3        &kp F4      &kp F5            &kp F6  &kp F7  &kp F8  &kp F9  &kp F10      &trans
-&trans  &kp F11       &kp F12       &trans        &trans      &studio_unlock    &trans  &trans  &trans  &trans  &trans       &trans
-&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_CLR  &bt BT_CLR_ALL    &trans  &trans  &trans  &trans  &bootloader  &trans
-                                    &trans        &trans      &trans            &trans  &trans  &trans
+&trans  &move_left    &kp F2             &kp F3           &move_right  &none             &none     &workspace_left  &none         &none      &workspace_right  &trans
+&trans  &left_half    &kp K_VOLUME_DOWN  &kp K_VOLUME_UP  &right_half  &studio_unlock    &kp LEFT  &kp DOWN         &kp UP_ARROW  &kp RIGHT  &none             &trans
+&trans  &bt BT_SEL 0  &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_CLR   &bt BT_CLR_ALL    &none     &none            &none         &none      &bootloader       &trans
+                                         &trans           &trans       &trans            &trans    &trans           &trans
             >;
         };
 
@@ -250,7 +336,7 @@
         compatible = "zmk,conditional-layers";
 
         sys {
-            if-layers = <1 2>;
+            if-layers = <1 4>;
             then-layer = <3>;
         };
     };
