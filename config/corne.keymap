@@ -149,6 +149,20 @@
 
             label = "WORKSPACE_RIGHT";
         };
+
+        workspace_show: workspace_show {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LCTRL>,
+                <&macro_tap>,
+                <&kp UP_ARROW>,
+                <&macro_release>,
+                <&kp LCTRL>;
+
+            label = "WORKSPACE_SHOW";
+        };
     };
 
     combos { compatible = "zmk,combos"; };
@@ -212,9 +226,9 @@
         ADJ {
             display-name = "System";
             bindings = <
-&trans  &move_left    &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &move_right  &none             &none     &workspace_left  &none         &none      &workspace_right  &trans
-&trans  &left_half    &kp C_VOLUME_DOWN     &kp C_VOLUME_UP       &right_half  &studio_unlock    &kp LEFT  &kp DOWN         &kp UP_ARROW  &kp RIGHT  &none             &trans
-&trans  &bt BT_SEL 0  &bt BT_SEL 1          &bt BT_SEL 2          &bt BT_CLR   &bt BT_CLR_ALL    &none     &none            &none         &none      &bootloader       &trans
+&trans  &move_left    &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &move_right  &none             &none     &workspace_left  &workspace_show  &none      &workspace_right  &trans
+&trans  &left_half    &kp C_VOLUME_DOWN     &kp C_VOLUME_UP       &right_half  &studio_unlock    &kp LEFT  &kp DOWN         &kp UP_ARROW     &kp RIGHT  &none             &trans
+&trans  &bt BT_SEL 0  &bt BT_SEL 1          &bt BT_SEL 2          &bt BT_CLR   &bt BT_CLR_ALL    &none     &none            &none            &none      &bootloader       &trans
                                             &trans                &trans       &trans            &trans    &trans           &trans
             >;
         };
